@@ -1,0 +1,41 @@
+
+[package]
+name = "nexcore-pv-core"
+version = "1.0.0"
+edition = "2024"
+authors = ["NexVigilant Team <team@nexvigilant.com>"]
+license = "LicenseRef-Proprietary"
+repository = "https://github.com/nexvigilant/nexcore"
+rust-version = "1.85"
+description = "Pharmacovigilance signal detection core: PRR, ROR, IC, EBGM, Chi², causality, FAERS, risk analytics"
+keywords = ["pharmacovigilance", "signal-detection", "drug-safety", "faers"]
+categories = ["science", "algorithms"]
+
+[dependencies]
+nexcore-cargo = { workspace = true }
+nexcore-edit-distance = { version = "1.0.0", path = "../nexcore-edit-distance", registry = "nexcore" }
+nexcore-error = { workspace = true }
+serde = { version = "1.0.204", features = ["derive"] }
+serde_json = { version = "1.0.120" }
+nexcore-chrono = { workspace = true }
+rand = "0.9"
+rayon = { version = "1.10.0" }
+nexcore-tov = { version = "1.0.0", path = "../nexcore-tov", registry = "nexcore" }
+nexcore-constants = { version = "1.0.0", path = "../nexcore-constants", registry = "nexcore" }
+nexcore-lex-primitiva = { version = "0.1.0", path = "../nexcore-lex-primitiva", registry = "nexcore" }
+nexcore-signal-types = { version = "1.0.0", path = "../nexcore-signal-types", registry = "nexcore" }
+nexcore-preemptive-pv = { version = "1.0.0", path = "../nexcore-preemptive-pv", registry = "nexcore" }
+signal = { version = "1.0.0", path = "../signal", registry = "nexcore" }
+phf = { version = "0.11.2", features = ["macros"] }
+nexcore-fhir = { workspace = true }
+nexcore-openfda = { workspace = true }
+nexcore-proof-of-meaning = { workspace = true }
+nexcore-flywheel = { path = "../nexcore-flywheel" }
+grounded = { path = "../grounded" }
+
+[dev-dependencies]
+tempfile = { version = "3.10.1" }
+
+
+[lints]
+workspace = true
