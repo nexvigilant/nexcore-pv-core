@@ -1,46 +1,40 @@
 # nexcore-pv-core
 
-The high-performance computation engine for pharmacovigilance (PV) operations within the NexVigilant platform. This crate implements the core mathematical and logical foundations for signal detection, causality assessment, and pharmacokinetic modeling.
+Part of the [NexVigilant](https://nexvigilant.com) pharmacovigilance platform.
 
-## Intent
-To provide a consolidated, type-safe library for all safety-critical PV calculations. It grounds domain-specific safety observations into formal axioms defined in the Theory of Vigilance (ToV).
+## About NexVigilant
 
-## T1 Grounding (Lex Primitiva)
-Dominant Primitives:
-- **N (Quantity)**: The primary primitive for all PV metrics (PRR, ROR, IC, EBGM).
-- **κ (Comparison)**: Used for evaluating signal thresholds and comparing drug-event profiles.
-- **→ (Causality)**: Formal implementation of Naranjo, WHO-UMC, and RUCAM loops.
-- **∂ (Boundary)**: Defines the safety boundaries and intervention thresholds for drugs.
-- **ς (State)**: Manages the temporal state and progression of adverse event cases (ICSRs).
+NexVigilant makes pharmacovigilance accessible. We build open computation tools for drug safety signal detection, causality assessment, and regulatory intelligence — because patient safety knowledge should be available to everyone willing to learn.
 
-## Core Modules
-- **signals**: Standard algorithms (PRR, ROR, IC, EBGM) and advanced detection (MaxSPRT, CuSum).
-- **causality**: Formal frameworks for assessing the link between exposure and outcome.
-- **coding**: O(1) Perfect Hash lookup for MedDRA/ICH terms and fuzzy matching.
-- **pk/thermodynamic**: Pharmacokinetics and binding energy calculations for molecular safety.
-- **risk**: Predictive analytics including Safety-at-Risk and Monte Carlo simulations.
-- **regulatory**: Compliance bridges for FDA, EMA, and ICH reporting standards.
+**Live tools:** [mcp.nexvigilant.com](https://mcp.nexvigilant.com) — 193 MCP tools for AI-powered pharmacovigilance, free to connect.
 
-## SOPs for Use
-### Signal Detection
-```rust
-use nexcore_pv_core::signals::calculate_prr;
-let prr = calculate_prr(10, 90, 100, 9800); // (a, b, c, d)
+## Installation
+
+```toml
+[dependencies]
+nexcore-pv-core = { git = "https://github.com/nexvigilant/nexcore-pv-core" }
 ```
 
-### Safety Margin Calculation
-```rust
-use nexcore_pv_core::SafetyMargin;
-let margin = SafetyMargin::calculate(prr, ror_lower, ic025, eb05, n);
-```
-
-### Regulatory Lookup
-```rust
-use nexcore_pv_core::lookup_term;
-if let Some(term) = lookup_term("Adverse Event") {
-    println!("Definition: {}", term.definition);
-}
-```
+> **Note:** This crate was developed as part of the [nexcore](https://github.com/nexvigilant) workspace. Some dependencies may reference workspace-level configuration. See individual `Cargo.toml` for details.
 
 ## License
-Proprietary. Copyright (c) 2026 NexVigilant LLC. All Rights Reserved.
+
+**Personal, non-commercial use only.** See [LICENSE](LICENSE) for full terms.
+
+Organizations of any kind must have explicit written permission for use.
+Contact [matthew@nexvigilant.com](mailto:matthew@nexvigilant.com) for licensing.
+
+## Contributing
+
+Contributions are welcome under the following terms:
+
+1. **Fork & PR.** Fork this repository, make your changes, and submit a pull request.
+2. **CLA.** By submitting a pull request, you agree that your contributions become the property of NexVigilant LLC under the same license terms.
+3. **Code quality.** All Rust code must pass `cargo clippy -- -D warnings` and `cargo fmt --check`.
+4. **Tests.** New functionality should include tests. Run `cargo test --lib` before submitting.
+
+For questions or discussion, open an issue or reach out at [matthew@nexvigilant.com](mailto:matthew@nexvigilant.com).
+
+---
+
+Built by [NexVigilant LLC](https://nexvigilant.com) — Pharmacovigilance for NexVigilants.
